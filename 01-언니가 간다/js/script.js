@@ -3,6 +3,7 @@ $(function () {
   const $window = $(window);
   const $document = $(document);
   const $girl = $('.girl');
+  const $puppy = $('.puppy');
 
   // 전역변수로 선언
   let windowHeight = 0;
@@ -42,6 +43,7 @@ $(function () {
     let percent = (scrollTop / scrollHeight) * 100 + '%';
     // $girl의 left로 적용(%)
     $girl.css('left', percent);
+    $puppy.css('left', percent);
   });
 
   // 마우스 휠 조작했을 때

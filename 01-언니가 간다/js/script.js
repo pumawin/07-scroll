@@ -4,18 +4,27 @@ $(function () {
   const $document = $(document);
   const $girl = $('.girl');
 
-  // 크기를 구해오는 제이쿼리 메서드 : outerHeight()/* 전체크기를 구하는 것이다 */\
-  let windowHeight = $window.outerHeight();
-  let documentHeight = $document.outerHeight();
+  // 전역변수로 선언
+  let windowHeight = 0;
+  let documentHeight = 0;
+  let scrollHeight = 0;
 
-  // scroll영역의 (세로)크기
-  let scrollHeight = documentHeight - windowHeight;
+  // 스크롤 영역을 구하는 함수
+  function getHeight() {
+    // 크기를 구해오는 제이쿼리 메서드 : outerHeight()/* 전체크기를 구하는 것이다 */\
+    windowHeight = $window.outerHeight();
+    documentHeight = $document.outerHeight();
+
+    // scroll영역의 (세로)크기
+    scrollHeight = documentHeight - windowHeight;
+  }
+
+  // 시작하자마자, 스크롤 영역 구하기
+  getHeight();
 
   // 브라우저 창이 조절될 때
   $window.on('resize', function () {
-    windowHeight = $window.outerHeight();
-    documentHeight = $document.outerHeight();
-    scrollHeight = documentHeight - windowHeight;
+    getHeight();
     console.log(scrollHeight);
   });
 

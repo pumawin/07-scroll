@@ -5,11 +5,19 @@ $(function () {
   const $girl = $('.girl');
 
   // 크기를 구해오는 제이쿼리 메서드 : outerHeight()/* 전체크기를 구하는 것이다 */\
-  const windowHeight = $window.outerHeight();
-  const documentHeight = $document.outerHeight();
+  let windowHeight = $window.outerHeight();
+  let documentHeight = $document.outerHeight();
 
   // scroll영역의 (세로)크기
-  const scrollHeight = documentHeight - windowHeight;
+  let scrollHeight = documentHeight - windowHeight;
+
+  // 브라우저 창이 조절될 때
+  $window.on('resize', function () {
+    windowHeight = $window.outerHeight();
+    documentHeight = $document.outerHeight();
+    scrollHeight = documentHeight - windowHeight;
+    console.log(scrollHeight);
+  });
 
   // 비율 구하는 공식
   // 대상을 기준으로 나누고 곱하기 100을 하면 된다.
@@ -26,7 +34,7 @@ $(function () {
 
   // 마우스 휠 조작했을 때
   $window.on('wheel keydown', function (e) {
-    console.log(e);
+    // console.log(e);
 
     if (e.originalEvent.deltaY < 0 || e.keyCode === 38) {
       // 휠 올렸을 때
